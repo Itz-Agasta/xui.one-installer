@@ -65,7 +65,9 @@ Ensure you have the following installed on your system:
    docker-compose up -d
    ```
 
-3. **Access XUI.ONE:** Open your web browser and navigate to the provided url to access XUI.ONE.
+3. **Access XUI.ONE:** Open the setup URL printed in the logs. With the
+   default Compose configuration it is `http://localhost:8080/<setup-code>`.
+   Do not use the container's private `172.x.x.x` address.
 
    ![setup](assets/setup_link.png)
 

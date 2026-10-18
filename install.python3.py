@@ -40,6 +40,12 @@ def getIP():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     return s.getsockname()[0]
+
+def getSetupURL(code):
+    public_url = os.environ.get("XUI_PUBLIC_URL")
+    if public_url:
+        return "%s/%s" % (public_url.rstrip("/"), code)
+    return "http://%s/%s" % (getIP(), code)
 #def getIP():
 #    try:
         # Try getting container IP first
@@ -258,11 +264,11 @@ if __name__ == "__main__":
     
     rFile = io.open(rPath + "/credentials.txt", "w", encoding="utf-8")
     rFile.write("MySQL Username: %s\nMySQL Password: %s" % (rUsername, rPassword))
-    rFile.write("\nContinue Setup: http://%s/%s" % (getIP(), rCode))
+    rFile.write("\nContinue Setup: %s" % getSetupURL(rCode))
     rFile.close()
     
     printc("Installation completed!", col.OKGREEN, 2)
-    printc("Continue Setup: http://%s/%s" % (getIP(), rCode))
+    printc("Continue Setup: %s" % getSetupURL(rCode))
     print(" ")
     printc("Your mysql credentials have been saved to:")
     printc(rPath + "/credentials.txt")
