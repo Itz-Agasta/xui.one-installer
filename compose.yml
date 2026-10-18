@@ -1,7 +1,8 @@
-version: "3"
 services:
   xui:
     build: .
+    environment:
+      XUI_PUBLIC_URL: "http://localhost:8080"
     ports:
       - "8080:80"
     volumes:
